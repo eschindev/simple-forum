@@ -1,0 +1,68 @@
+<div class="row mb-4 post" data-post-id="{{post.id}}">
+  <div class="col-md-5">
+    <h2>
+      {{post.title}}
+    </h2>
+    <hz></hz>
+    <p>
+      {{post.body}}
+    </p>
+    <hz></hz>
+    <p data-post-user-id="{{post.user_id}}">Created by
+      {{post.user.username}}
+      on
+      {{format_date post.created_on}}</p>
+    {{#if (eq post.user_id current_user_id)}}
+      <p>
+        <a href="/post/{{post.id}}/edit">Edit </a>
+        <a
+          href="#"
+          id="delete-post"
+          style="margin-left: 4rem;"
+          data-post-id="{{post.id}}"
+        >Delete</a>
+      </p>
+    {{/if}}
+  </div>
+</div>
+
+<div class="col-md-6">
+  <h2>Add Reply</h2>
+
+  <form class="form reply-form" data-reply-user-id="{{current_user_id}}">
+    <div class="form-group">
+      <textarea
+        class="reply-input"
+        id="reply-input"
+        rows="4"
+        cols="50"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+
+{{#each post.reply as |reply|}}
+  <div class="row mb-4 reply">
+    <div class="col-md-5">
+      <h2>
+        <a href="/reply/{{reply.id}}">{{reply.title}}</a>
+      </h2>
+      <hz></hz>
+      <p>
+        {{reply.created_on}}
+      </p>
+      <p>Created by
+        {{reply.user.username}}
+        on
+        {{format_date reply.created_on}}</p>
+    </div>
+  </div>
+{{/each}}
+
+<script src="reply.js"></script>
+{{#if (eq post.user_id current_user_id)}}
+  <script src="delete-post.js"></script>
+{{/if}}
