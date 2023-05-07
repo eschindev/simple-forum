@@ -6,7 +6,7 @@ router.get("/:id/edit", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
 
-    post = postData.get({ plain: true });
+    const post = postData.get({ plain: true });
 
     res.render("edit-post", post);
   } catch (err) {
