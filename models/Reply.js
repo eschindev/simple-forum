@@ -1,5 +1,4 @@
 const { Model, DataTypes } = require("sequelize");
-const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
 
 class Reply extends Model {}
@@ -48,7 +47,7 @@ Reply.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "post",
+    modelName: "reply",
   }
 );
 

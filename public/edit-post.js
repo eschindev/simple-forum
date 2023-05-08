@@ -6,10 +6,10 @@ const editFormHandler = async (event) => {
 
   const response = await fetch(`/api/post/${event.target.dataset.postId}`, {
     method: "PUT",
-    body: {
+    body: JSON.stringify({
       title,
       body,
-    },
+    }),
     headers: { "Content-Type": "application/json" },
   });
 
@@ -21,5 +21,5 @@ const editFormHandler = async (event) => {
 };
 
 document
-  .querySelector("#edit-post-form")
+  .querySelector(".edit-post-form")
   .addEventListener("submit", editFormHandler);

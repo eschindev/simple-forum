@@ -12,7 +12,7 @@
       {{post.user.username}}
       on
       {{format_date post.created_on}}</p>
-    {{#if (eq post.user_id current_user_id)}}
+    {{#if owned_by_user}}
       <p>
         <a href="/post/{{post.id}}/edit">Edit </a>
         <a
@@ -62,7 +62,7 @@
   </div>
 {{/each}}
 
-<script src="reply.js"></script>
-{{#if (eq post.user_id current_user_id)}}
-  <script src="delete-post.js"></script>
+<script src="/reply.js"></script>
+{{#if owned_by_user}}
+  <script src="/delete-post.js"></script>
 {{/if}}

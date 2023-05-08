@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Registry</title>
+    <title>Simple Forum</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -15,14 +15,17 @@
   <body>
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        User Registry
+        Simple Forum
       </h1>
 
-      {{#if logged_in}}
-        <nav>
-          <button class="btn" id="logout">logout</button>
-        </nav>
-      {{/if}}
+      <nav>
+        <a href="/">Homepage</a>
+        <a href="/dashboard" style="margin-left: 4rem;">Dashboard</a>
+        {{#if logged_in}}
+          <a id="logout" style="margin-left: 4rem;">Logout</a>
+        {{/if}}
+      </nav>
+
     </header>
     <main class="container container-fluid mt-5">
       {{{body}}}
@@ -32,7 +35,7 @@
     </footer>
 
     {{#if logged_in}}
-      <script src="logout.js"></script>
+      <script src="/logout.js"></script>
     {{/if}}
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

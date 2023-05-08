@@ -1,29 +1,24 @@
 <div class="col-md-6">
   <h2>Edit Post</h2>
 
-  <form class="form edit-post-form" data-post-id="{{post.id}}">
+  <form class="form edit-post-form" data-post-id="{{id}}">
     <div class="form-group">
-      <input
-        type="text"
-        name="post-title"
-        id="post-title"
-        value="{{post.title}}"
-      />
+      <input type="text" name="post-title" id="post-title" value="{{title}}" />
       <textarea
         name="post-body"
         id="post-body"
         rows="4"
         cols="50"
-      >{{post.body}}</textarea>
+      >{{body}}</textarea>
     </div>
     <div class="form-group">
       <button
         class="btn btn-primary"
         type="submit"
-        data-post-id="{{post.id}}"
+        data-post-id="{{id}}"
       >Submit</button>
     </div>
   </form>
 </div>
 
-<script src="edit-post.js"></script>
+<script src="/edit-post.js"></script>

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post } = require("../../models");
+const { User, Post, Reply } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 router.get("/:id/edit", withAuth, async (req, res) => {
@@ -7,7 +7,7 @@ router.get("/:id/edit", withAuth, async (req, res) => {
     const postData = await Post.findByPk(req.params.id);
 
     const post = postData.get({ plain: true });
-
+    console.log(post);
     res.render("edit-post", post);
   } catch (err) {
     res.status(500).json(err);
@@ -32,11 +32,13 @@ router.get("/:id", withAuth, async (req, res) => {
     });
 
     post = postData.get({ plain: true });
+    const ownedByUser = post.user_id == req.session.user_id;
 
     res.render("post", {
       post,
       logged_in: req.session.logged_in,
       current_user_id: req.session.user_id,
+      owned_by_user: ownedByUser,
     });
   } catch (err) {
     res.status(500).json(err);
