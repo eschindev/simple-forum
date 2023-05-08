@@ -44,7 +44,7 @@
   </form>
 </div>
 
-{{#each post.reply as |reply|}}
+{{#each post.replies as |reply|}}
   <div class="row mb-4 reply">
     <div class="col-md-5">
       <h2>
@@ -52,7 +52,7 @@
       </h2>
       <hz></hz>
       <p>
-        {{reply.created_on}}
+        {{reply.body}}
       </p>
       <p>Created by
         {{reply.user.username}}

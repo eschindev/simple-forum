@@ -8,22 +8,22 @@ const newPostFormHandler = async (event) => {
 
   const response = await fetch(`/api/post`, {
     method: "POST",
-    body: {
+    body: JSON.stringify({
       title,
       body,
       created_on,
       user_id,
-    },
+    }),
     headers: { "Content-Type": "application/json" },
   });
 
   if (response.ok) {
-    document.location.replace(`/post/${event.target.dataset.postId}`);
+    document.location.replace(`/dashboard`);
   } else {
     alert("Failed to create post.");
   }
 };
 
 document
-  .querySelector("#new-post-form")
+  .querySelector(".new-post-form")
   .addEventListener("submit", newPostFormHandler);

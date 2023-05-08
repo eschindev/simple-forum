@@ -6,7 +6,7 @@ const replyFormHandler = async (event) => {
   const user_id = document.querySelector(".reply-form").dataset.currentUserId;
   const created_on = new Date();
 
-  if (replyInput) {
+  if (body) {
     const response = await fetch("/api/reply", {
       method: "POST",
       body: JSON.stringify({ body, created_on, post_id, user_id }),

@@ -37,9 +37,9 @@ router.get("/dashboard", withAuth, async (req, res) => {
       order: [["created_on", "DESC"]],
     });
 
-    const posts = postdData.map((post) => post.get({ plain: true }));
+    const posts = postData.map((post) => post.get({ plain: true }));
 
-    res.render("dashboard", posts);
+    res.render("dashboard", { posts, logged_in: req.session.logged_in });
   } catch (err) {
     res.status(500).json(err);
   }

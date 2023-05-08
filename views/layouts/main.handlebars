@@ -22,7 +22,9 @@
         <a href="/">Homepage</a>
         <a href="/dashboard" style="margin-left: 4rem;">Dashboard</a>
         {{#if logged_in}}
-          <a id="logout" style="margin-left: 4rem;">Logout</a>
+          <a id="logout" style="margin-left: 4rem;">Log out</a>
+        {{else}}
+          <a href="/login" style="margin-left: 4rem;">Log in</a>
         {{/if}}
       </nav>
 

@@ -7,7 +7,7 @@ router.get("/:id/edit", withAuth, async (req, res) => {
     const postData = await Post.findByPk(req.params.id);
 
     const post = postData.get({ plain: true });
-    console.log(post);
+    console.log({ post, logged_in: req.session.logged_in });
     res.render("edit-post", post);
   } catch (err) {
     res.status(500).json(err);
@@ -33,6 +33,7 @@ router.get("/:id", withAuth, async (req, res) => {
 
     post = postData.get({ plain: true });
     const ownedByUser = post.user_id == req.session.user_id;
+    console.log(post);
 
     res.render("post", {
       post,
@@ -47,7 +48,10 @@ router.get("/:id", withAuth, async (req, res) => {
 
 router.get("/", withAuth, async (req, res) => {
   try {
-    res.render("new-post", { user_id: req.session.user_id });
+    res.render("new-post", {
+      user_id: req.session.user_id,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     res.status(500).json(err);
   }
