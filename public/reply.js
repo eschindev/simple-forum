@@ -3,7 +3,7 @@ const replyFormHandler = async (event) => {
 
   const body = document.querySelector("#reply-input").value.trim();
   const post_id = document.querySelector(".post").dataset.postId;
-  const user_id = document.querySelector(".reply-form").dataset.currentUserId;
+  const user_id = document.querySelector(".reply-form").dataset.replyUserId;
   const created_on = new Date();
 
   if (body) {

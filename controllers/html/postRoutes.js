@@ -33,7 +33,12 @@ router.get("/:id", withAuth, async (req, res) => {
 
     post = postData.get({ plain: true });
     const ownedByUser = post.user_id == req.session.user_id;
-    console.log(post);
+    console.log({
+      post,
+      logged_in: req.session.logged_in,
+      current_user_id: req.session.user_id,
+      owned_by_user: ownedByUser,
+    });
 
     res.render("post", {
       post,
