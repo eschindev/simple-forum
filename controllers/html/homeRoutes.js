@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { User, Post } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
       order: [["created_on", "DESC"]],
@@ -26,6 +26,23 @@ router.get("/login", (req, res) => {
   }
 
   res.render("login");
+});
+
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
+      order: [["created_on", "DESC"]],
+    });
+
+    const posts = postdData.map((post) => post.get({ plain: true }));
+
+    res.render("dashboard", posts);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

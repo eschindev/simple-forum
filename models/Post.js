@@ -15,16 +15,10 @@ Post.init(
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [1],
-      },
     },
     body: {
       type: DataTypes.TEXT,
       allowNull: false,
-      validate: {
-        len: [1],
-      },
     },
     created_on: {
       type: DataTypes.DATE,
@@ -39,6 +33,11 @@ Post.init(
     },
   },
   {
+    hooks: {
+      beforeCreate: (newPostData) => {
+        newPostData.created_on = new Date();
+      },
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,

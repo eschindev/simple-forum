@@ -4,7 +4,7 @@ const sequelize = require("../config/connection");
 
 class Reply extends Model {}
 
-Post.init(
+Reply.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -39,6 +39,11 @@ Post.init(
     },
   },
   {
+    hooks: {
+      beforeCreate: (newReplyData) => {
+        newReplyData.created_on = new Date();
+      },
+    },
     sequelize,
     timestamps: false,
     freezeTableName: true,

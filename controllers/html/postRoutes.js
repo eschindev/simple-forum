@@ -26,6 +26,7 @@ router.get("/:id", withAuth, async (req, res) => {
           include: {
             model: User,
           },
+          order: [["created_on", "ASC"]],
         },
       ],
     });
@@ -37,6 +38,14 @@ router.get("/:id", withAuth, async (req, res) => {
       logged_in: req.session.logged_in,
       current_user_id: req.session.user_id,
     });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get("/", withAuth, async (req, res) => {
+  try {
+    res.render("new-post", { user_id: req.session.user_id });
   } catch (err) {
     res.status(500).json(err);
   }
